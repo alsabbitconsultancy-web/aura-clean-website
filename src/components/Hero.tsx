@@ -21,14 +21,6 @@ type Floater = {
   delay: number;
 };
 
-function extractCorners(src: string): Floater[] {
-  return [
-    { src, className: "left-[2%] top-[10%] w-[min(20vw,168px)]", layer: "back", depth: 12, delay: 0.15 },
-    { src, className: "right-[2%] top-[12%] w-[min(16vw,136px)] rotate-6", layer: "back", depth: 14, delay: 0.4 },
-    { src, className: "left-[5%] bottom-[14%] w-[min(17vw,140px)] -rotate-8", layer: "front", depth: 22, delay: 0.7 },
-  ];
-}
-
 const VARIANTS = [
   {
     id: "charcoal",
@@ -221,8 +213,12 @@ export function Hero() {
     return () => window.clearInterval(id);
   }, [index, reduce]);
 
-  const back = slide.floats.filter((item) => item.layer === "back");
-  const front = slide.floats.filter((item) => item.layer === "front");
+  const back = slide.floats.filter(
+    (item) => (item.layer as Floater["layer"]) === "back",
+  );
+  const front = slide.floats.filter(
+    (item) => (item.layer as Floater["layer"]) === "front",
+  );
   const wordSize =
     slide.word.length > 6
       ? "clamp(3.4rem, 12vw, 12rem)"
