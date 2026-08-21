@@ -141,16 +141,16 @@ const VARIANTS = [
   },
   {
     id: "floor",
-    src: "/product-floor-lemon.webp?v=3",
+    src: "/product-floor-lemon.webp?v=4",
     name: "Floor",
-    line: "Floor Cleaner - Lemon Liquid",
+    line: "Premium Floor Cleaner — Lemon Fresh",
     word: "SHINE",
     slogan: "Floors That Glow.",
-    description: "Lemon Fresh 5 Ltr floor liquid — lasting shine, freshness, and 10X better germ protection.",
-    bg: "#2A1848",
-    ink: "#F4F1EA",
-    cta: "#F4F1EA",
-    ctaInk: "#2A1848",
+    description: "Plant-extract powered Lemon Fresh clean for lasting shine, freshness, and 10X stronger litter & bacteria clean.",
+    bg: "#C5A000",
+    ink: "#1C1408",
+    cta: "#1C1408",
+    ctaInk: "#F5C400",
     floats: [
       {
         src: "/floor-floral.webp?v=1",
