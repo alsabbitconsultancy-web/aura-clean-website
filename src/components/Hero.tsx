@@ -314,9 +314,18 @@ function StageFloat({
 export function Hero() {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const slide = VARIANTS[index];
   const px = useMotionValue(0);
   const py = useMotionValue(0);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setIsMobile(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.hero = slide.id;
@@ -326,14 +335,14 @@ export function Hero() {
   }, [slide.id]);
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || isMobile) return;
     const onMove = (event: PointerEvent) => {
       px.set(event.clientX / window.innerWidth - 0.5);
       py.set(event.clientY / window.innerHeight - 0.5);
     };
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
-  }, [px, py, reduce]);
+  }, [px, py, reduce, isMobile]);
 
   useEffect(() => {
     if (reduce) return;
@@ -349,6 +358,7 @@ export function Hero() {
   const front = slide.floats.filter(
     (item) => (item.layer as Floater["layer"]) === "front",
   );
+  const calm = Boolean(reduce || isMobile);
 
   return (
     <motion.section
@@ -364,7 +374,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: reduce ? 0 : 0.55, ease: EASE }}
+          transition={{ duration: calm ? 0.28 : 0.55, ease: EASE }}
         >
           <div
             aria-hidden="true"
@@ -375,7 +385,7 @@ export function Hero() {
             }}
           />
 
-          <HeroWordBack word={slide.word} ink={slide.ink} reduce={reduce} />
+          <HeroWordBack word={slide.word} ink={slide.ink} reduce={calm} />
 
           <div className="pointer-events-none absolute inset-0 z-[12] hidden md:block">
             {back.map((item, i) => (
@@ -391,12 +401,12 @@ export function Hero() {
               height={960}
               className="hero-bottle"
               style={{ filter: "drop-shadow(0 32px 36px rgba(0,0,0,0.38))" }}
-              animate={reduce ? undefined : { y: [0, -8, 0] }}
-              transition={reduce ? undefined : { duration: 4.6, repeat: Infinity, ease: "easeInOut" }}
+              animate={calm ? undefined : { y: [0, -8, 0] }}
+              transition={calm ? undefined : { duration: 4.6, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
 
-          <HeroWordFront word={slide.word} ink={slide.ink} reduce={reduce} />
+          <HeroWordFront word={slide.word} ink={slide.ink} reduce={calm} />
 
           <div className="pointer-events-none absolute inset-0 z-30 hidden md:block">
             {front.map((item, i) => (
@@ -408,14 +418,14 @@ export function Hero() {
 
       <div className="hero-copy-panel absolute bottom-[7.4rem] left-0 z-40 w-full max-w-[34rem] px-[clamp(1rem,4.5vw,4.5rem)] lg:bottom-[5.6rem]">
         <div className="hero-copy-inner relative min-h-[13.8rem] max-md:min-h-0">
-          <AnimatePresence initial={false}>
+          <AnimatePresence initial={false} mode={isMobile ? "wait" : undefined}>
             <motion.div
               key={slide.id}
               className="hero-copy absolute inset-0 max-md:relative max-md:inset-auto"
-              initial={{ opacity: 0, y: 12 }}
+              initial={calm ? { opacity: 0 } : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: reduce ? 0 : 0.45, ease: EASE }}
+              exit={calm ? { opacity: 0 } : { opacity: 0, y: -8 }}
+              transition={{ duration: calm ? 0.25 : 0.45, ease: EASE }}
               style={{ color: slide.ink }}
             >
               <p className="hero-kicker m-0 text-[0.7rem] font-extrabold uppercase tracking-[0.28em] opacity-55">
