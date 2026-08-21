@@ -2184,7 +2184,7 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
   border: 0;
   box-shadow: 0 18px 40px rgba(28, 20, 8, 0.08);
   animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.35s ease, color 0.35s ease;
 }
 
 .range-grid li:hover {
@@ -2972,7 +2972,7 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
   background: #fffdf6;
   border: 0;
   box-shadow: 0 18px 40px rgba(28, 20, 8, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.35s ease, color 0.35s ease;
 }
 
 .product-grid > li:hover {
@@ -3173,6 +3173,22 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
 .product-grid > li[data-sku] .add-cart {
   background: #fff8ee;
   color: #1c1408;
+}
+
+.product-grid > li[data-flavor="lemon"] .option-chip:not(.is-active),
+.range-grid > li[data-flavor="lemon"] .option-chip:not(.is-active) {
+  border-color: rgba(28, 20, 8, 0.22);
+  background: rgba(255, 248, 238, 0.35);
+}
+
+.product-grid > li[data-flavor="rose"] .product-visual,
+.range-grid > li[data-flavor="rose"] .range-stage {
+  background: rgba(255, 248, 238, 0.18);
+}
+
+.product-grid > li[data-flavor="lemon"] .product-visual,
+.range-grid > li[data-flavor="lemon"] .range-stage {
+  background: rgba(255, 248, 238, 0.28);
 }
 
 /* ------------------------------------------------------------------ */

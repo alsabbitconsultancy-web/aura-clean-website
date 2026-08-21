@@ -65,7 +65,7 @@ export const PRODUCTS: Product[] = [
         id: "lemon",
         label: "Lemon",
         src: "/product-handwash-lemon.webp",
-        tone: "#e6b422",
+        tone: "#f0c400",
       },
       {
         id: "rose",
@@ -129,7 +129,7 @@ export const PRODUCTS: Product[] = [
         id: "lemon",
         label: "Lemon",
         src: "/product-floor-lemon.webp?v=5",
-        tone: "#c5a000",
+        tone: "#f0c400",
       },
       {
         id: "rose",
