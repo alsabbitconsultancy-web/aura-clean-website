@@ -504,12 +504,12 @@ button, a { font: inherit; }
 }
 
 html[data-hero="lemon"],
-html[data-hero="dish"],
-html[data-hero="floor"] { --hero-ink: #1c1408; }
+html[data-hero="dish"] { --hero-ink: #1c1408; }
 
 html[data-hero="charcoal"],
 html[data-hero="toilet"],
-html[data-hero="laundry"] { --hero-ink: #f4f1ea; }
+html[data-hero="laundry"],
+html[data-hero="floor"] { --hero-ink: #f4f1ea; }
 
 html[data-hero="rose"],
 html[data-hero="bathroom"] { --hero-ink: #fff4f6; }

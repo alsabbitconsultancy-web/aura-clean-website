@@ -113,8 +113,8 @@ export const PRODUCTS: Product[] = [
     id: "floor",
     name: "Premium Floor Cleaner",
     category: "floor",
-    src: "/product-floor-lemon.webp?v=4",
-    tone: "#c5a000",
+    src: "/product-floor-lavender.webp?v=1",
+    tone: "#7b4fd1",
     blurb: "Plant-extract powered shine — pick Lavender, Lemon Fresh, or Rose Fresh.",
     spec: "10X Litter & Bacteria Stronger Clean",
     volume: "500 ml – 1 Ltr",
@@ -122,7 +122,7 @@ export const PRODUCTS: Product[] = [
       {
         id: "lavender",
         label: "Lavender",
-        src: "/lavender-floor.webp",
+        src: "/product-floor-lavender.webp?v=1",
         tone: "#7b4fd1",
       },
       {

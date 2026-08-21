@@ -141,16 +141,16 @@ const VARIANTS = [
   },
   {
     id: "floor",
-    src: "/product-floor-lemon.webp?v=4",
+    src: "/product-floor-lavender.webp?v=1",
     name: "Floor",
-    line: "Premium Floor Cleaner — Lemon Fresh",
+    line: "Premium Floor Cleaner — Lavender",
     word: "SHINE",
     slogan: "Floors That Glow.",
-    description: "Plant-extract powered Lemon Fresh clean for lasting shine, freshness, and 10X stronger litter & bacteria clean.",
-    bg: "#C5A000",
-    ink: "#1C1408",
-    cta: "#1C1408",
-    ctaInk: "#F5C400",
+    description: "Plant-extract powered clean for lasting shine, freshness, and 10X stronger litter & bacteria clean.",
+    bg: "#2A1848",
+    ink: "#F4F1EA",
+    cta: "#F4F1EA",
+    ctaInk: "#2A1848",
     floats: [
       {
         src: "/floor-floral.webp?v=1",
