@@ -141,7 +141,7 @@ const VARIANTS = [
   },
   {
     id: "floor",
-    src: "/product-floor-lemon.webp?v=1",
+    src: "/product-floor-lemon.webp?v=2",
     name: "Floor",
     line: "Floor Cleaner - Lemon Liquid",
     word: "SHINE",
