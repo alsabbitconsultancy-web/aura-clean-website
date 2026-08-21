@@ -110,6 +110,7 @@ export function Footer() {
 
       <div className="footer-bar">
         <p>© 2026 Aura Clean. Official bottles, named as on the pack.</p>
+        <p>Manufactured by Laiba Lubricants Pvt. Ltd.</p>
         <p>Pure Hands, Pure Care.</p>
       </div>
     </footer>
