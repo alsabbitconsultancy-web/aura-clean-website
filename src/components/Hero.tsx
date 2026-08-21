@@ -24,7 +24,7 @@ type Floater = {
 const VARIANTS = [
   {
     id: "charcoal",
-    src: "/product-handwash-charcoal.webp?v=2",
+    src: "/product-handwash-charcoal.webp?v=11",
     name: "Charcoal",
     line: "Charcoal Hand Wash",
     word: "DETOX",
@@ -263,7 +263,7 @@ export function Hero() {
             ))}
           </div>
 
-          <div className="absolute inset-0 z-20 grid place-items-center px-[clamp(1rem,4vw,3rem)]">
+          <div className="absolute inset-0 z-20 grid place-items-center px-[clamp(1rem,4vw,3rem)] py-[clamp(3.5rem,8vh,6rem)]">
             <motion.img
               src={slide.src}
               alt={slide.line}
@@ -271,7 +271,7 @@ export function Hero() {
               height={960}
               className="hero-bottle"
               style={{ filter: "drop-shadow(0 32px 36px rgba(0,0,0,0.38))" }}
-              animate={reduce ? undefined : { y: [0, -16, 0] }}
+              animate={reduce ? undefined : { y: [0, -8, 0] }}
               transition={reduce ? undefined : { duration: 4.6, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>

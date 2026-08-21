@@ -5,7 +5,7 @@ import { ArrowIcon } from "../components/icons";
 const SIGNATURES = [
   {
     id: "charcoal",
-    src: "/product-handwash-charcoal.webp",
+    src: "/product-handwash-charcoal.webp?v=11",
     word: "Detox",
     name: "Hand Wash - Charcoal",
     line: "Activated charcoal for a deep, unapologetic cleanse. 99.9% protection.",
