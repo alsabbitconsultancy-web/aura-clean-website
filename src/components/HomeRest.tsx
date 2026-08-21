@@ -178,21 +178,14 @@ export function HomeRest() {
       </section>
 
       <section className="final-cta">
-        <div className="final-bottles">
-          {COLLECTION.map((item) => (
-            <img
-              key={item.id}
-              src={item.src}
-              alt={item.name}
-              data-sku={item.id}
-              width={160}
-              height={320}
-            />
-          ))}
-        </div>
-        <div>
+        <div className="final-cta-copy">
           <p className="lux-kicker lux-kicker-light">The house</p>
-          <h2>Clean hands. Healthy life. Better home.</h2>
+          <h2 className="final-cta-title">
+            <span className="final-line">Clean hands.</span>
+            <span className="final-line">Healthy life.</span>
+            <span className="final-line is-accent">Better home.</span>
+          </h2>
+          <p className="final-cta-note">Care that protects — from the basin to the floor.</p>
           <Link className="cta cta-lime" to="/product">
             Explore the collection
             <span className="cta-arrow" aria-hidden="true">
