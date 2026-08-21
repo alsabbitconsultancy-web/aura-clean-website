@@ -29,6 +29,11 @@ export const ADDRESS = {
   maps: "https://www.google.com/maps/search/?api=1&query=236+Seventh+Heaven+Ahmedabad",
 } as const;
 
+export const MANUFACTURER = {
+  label: "Manufactured by",
+  name: "Laiba Lubricants Pvt. Ltd.",
+} as const;
+
 export const SOCIAL = [
   {
     id: "instagram",

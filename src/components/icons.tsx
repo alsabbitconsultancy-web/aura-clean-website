@@ -122,6 +122,16 @@ export function MenuIcon(props: IconProps) {
   );
 }
 
+export function HomeIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...base} {...props}>
+      <path d="M4.5 11.2 12 4.8l7.5 6.4" />
+      <path d="M7 10.8V19h10v-8.2" />
+      <path d="M10 19v-4.2h4V19" />
+    </svg>
+  );
+}
+
 export function CloseIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" {...base} {...props}>

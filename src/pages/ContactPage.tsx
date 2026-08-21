@@ -1,5 +1,5 @@
 import { type FormEvent, useState } from "react";
-import { ADDRESS, EMAIL, ENQUIRY, PHONE, SOCIAL } from "../data/contact";
+import { ADDRESS, EMAIL, ENQUIRY, MANUFACTURER, PHONE, SOCIAL } from "../data/contact";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -63,6 +63,11 @@ export function ContactPage() {
               </a>
             </li>
           </ul>
+
+          <p className="contact-maker">
+            <em>{MANUFACTURER.label}</em>
+            <strong>{MANUFACTURER.name}</strong>
+          </p>
 
           <ul className="contact-social" aria-label="Social media">
             {SOCIAL.map((item) => {
