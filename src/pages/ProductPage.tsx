@@ -56,7 +56,8 @@ const START_MARK: Partial<Record<ProductId, string>> = {
   lemon: "Fresh lemon",
   rose: "Soft rose",
   toilet: "10x Power",
-  floor: "Plant powered",
+  "floor-lemon": "Lemon liquid",
+  "floor-rose": "Rose liquid",
 };
 
 const CHIP_LABELS: Partial<Record<CategoryId, string>> = {

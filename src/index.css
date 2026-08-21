@@ -879,9 +879,19 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
 }
 
 .about-range-grid li[data-sku="floor"],
-.range-grid li[data-sku="floor"] {
+.about-range-grid li[data-sku="floor-lemon"],
+.about-range-grid li[data-sku="floor-rose"],
+.range-grid li[data-sku="floor"],
+.range-grid li[data-sku="floor-lemon"],
+.range-grid li[data-sku="floor-rose"] {
   background: #2a1848;
   color: #f4f1ea;
+}
+
+.about-range-grid li[data-sku="floor-rose"],
+.range-grid li[data-sku="floor-rose"] {
+  background: #5a2048;
+  color: #fff4f8;
 }
 
 .about-range-grid li[data-sku="charcoal"],
@@ -3003,13 +3013,22 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
   color: #1c1408;
 }
 
-.product-grid > li[data-sku="floor"] {
+.product-grid > li[data-sku="floor"],
+.product-grid > li[data-sku="floor-lemon"],
+.product-grid > li[data-sku="floor-rose"] {
   background: #2a1848;
   color: #f4f1ea;
 }
 
-.product-grid > li[data-sku="floor"] .product-visual {
+.product-grid > li[data-sku="floor"] .product-visual,
+.product-grid > li[data-sku="floor-lemon"] .product-visual,
+.product-grid > li[data-sku="floor-rose"] .product-visual {
   background: linear-gradient(180deg, rgba(255, 248, 238, 0.08) 0%, rgba(20, 10, 35, 0.35) 100%);
+}
+
+.product-grid > li[data-sku="floor-rose"] {
+  background: #5a2048;
+  color: #fff4f8;
 }
 
 .product-grid > li[data-sku="charcoal"] {

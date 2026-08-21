@@ -6,6 +6,8 @@ export type ProductId =
   | "bathroom"
   | "laundry"
   | "floor"
+  | "floor-lemon"
+  | "floor-rose"
   | "dish"
   | "combo";
 
@@ -92,14 +94,24 @@ export const PRODUCTS: Product[] = [
     volume: "1 Ltr",
   },
   {
-    id: "floor",
-    name: "Premium Floor Cleaner",
+    id: "floor-lemon",
+    name: "Floor Cleaner - Lemon Liquid",
     category: "floor",
-    src: "/product-floor.webp?v=7",
+    src: "/product-floor-lemon.webp?v=1",
     tone: "#7b4fd1",
-    blurb: "Plant-extract powered. Shines, disinfects, freshens.",
-    spec: "10X Litter & Bacteria Stronger Clean",
-    volume: "1 Ltr",
+    blurb: "Lemon Fresh floor liquid. Shining long-lasting fragrance with 10X germ protection.",
+    spec: "10X Better Germ Protection",
+    volume: "5 Ltr",
+  },
+  {
+    id: "floor-rose",
+    name: "Floor Cleaner - Rose Liquid",
+    category: "floor",
+    src: "/product-floor-rose.webp?v=1",
+    tone: "#9b4fc4",
+    blurb: "Rose floor liquid. Shining long-lasting fragrance with 10X germ protection.",
+    spec: "10X Better Germ Protection",
+    volume: "5 Ltr",
   },
   {
     id: "dish",
@@ -128,7 +140,7 @@ export const COMBO_PRODUCT: Product = {
 
 export const COMBO_INCLUDES = [
   { id: "laundry" as const, label: "Laundry" },
-  { id: "floor" as const, label: "Floor" },
+  { id: "floor-lemon" as const, label: "Floor" },
   { id: "dish" as const, label: "Dish" },
   { id: "bathroom" as const, label: "Bath" },
   { id: "toilet" as const, label: "Toilet" },
@@ -137,6 +149,8 @@ export const COMBO_INCLUDES = [
 
 export function findProduct(id: ProductId): Product | undefined {
   if (id === "combo") return COMBO_PRODUCT;
+  // Legacy cart / deep-link alias for the old single floor SKU.
+  if (id === "floor") return PRODUCTS.find((item) => item.id === "floor-lemon");
   return PRODUCTS.find((item) => item.id === id);
 }
 
@@ -148,7 +162,8 @@ export const CATALOG_ORDER: ProductId[] = [
   "toilet",
   "bathroom",
   "laundry",
-  "floor",
+  "floor-lemon",
+  "floor-rose",
   "dish",
   "charcoal",
   "lemon",

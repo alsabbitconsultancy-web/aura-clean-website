@@ -41,7 +41,7 @@ export function AboutPage() {
         <p className="lux-kicker">The house</p>
         <h1>Care that belongs in the home.</h1>
         <p>
-          Aura Clean is a complete hygiene house - eight official formulas, one standard of
+          Aura Clean is a complete hygiene house - nine official formulas, one standard of
           purity. From the first lather at the basin to the last wipe on the floor.
         </p>
       </header>

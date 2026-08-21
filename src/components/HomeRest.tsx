@@ -51,7 +51,7 @@ export function HomeRest() {
         <header className="band-head lux-head">
           <p className="lux-kicker">The collection</p>
           <h2>Our complete cleaning range</h2>
-          <p>Eight official bottles. One standard of care - from the basin to the floor.</p>
+          <p>Nine official bottles. One standard of care - from the basin to the floor.</p>
         </header>
         <ul className="range-grid">
           {COLLECTION.map((item) => (
