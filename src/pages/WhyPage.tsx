@@ -103,7 +103,7 @@ export function WhyPage() {
 
       <div className="lux-close">
         <h2>Bring Aura Clean home.</h2>
-        <p>Nine official products. One complete clean - from hands to floors.</p>
+        <p>Six product lines. One complete clean - from hands to floors.</p>
         <Link className="cta cta-lime" to="/product">
           Explore the collection
           <span className="cta-arrow" aria-hidden="true">

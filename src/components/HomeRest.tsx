@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { CATALOG_ORDER, PRODUCTS } from "../data/products";
-import { AddToCartButton } from "./AddToCartButton";
+import { ProductOptionCard } from "./ProductOptionCard";
 import {
   ArrowIcon,
   FamilyIcon,
@@ -51,19 +51,11 @@ export function HomeRest() {
         <header className="band-head lux-head">
           <p className="lux-kicker">The collection</p>
           <h2>Our complete cleaning range</h2>
-          <p>Nine official bottles. One standard of care - from the basin to the floor.</p>
+          <p>Six product lines. Flavours and sizes you can pick — from the basin to the floor.</p>
         </header>
         <ul className="range-grid">
           {COLLECTION.map((item) => (
-            <li key={item.id} id={item.id} data-sku={item.id}>
-              <div className="range-stage">
-                <img src={item.src} alt={item.name} width={320} height={520} />
-              </div>
-              <span className="range-vol">{item.volume}</span>
-              <h3>{item.name}</h3>
-              <p>{item.blurb}</p>
-              <AddToCartButton id={item.id} />
-            </li>
+            <ProductOptionCard key={item.id} product={item} layout="range" />
           ))}
         </ul>
       </section>

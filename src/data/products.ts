@@ -1,15 +1,17 @@
 export type ProductId =
-  | "lemon"
-  | "charcoal"
-  | "rose"
+  | "hand-wash"
   | "toilet"
   | "bathroom"
   | "laundry"
   | "floor"
-  | "floor-lemon"
-  | "floor-rose"
   | "dish"
-  | "combo";
+  | "combo"
+  /** Legacy cart / deep-link ids */
+  | "charcoal"
+  | "lemon"
+  | "rose"
+  | "floor-lemon"
+  | "floor-rose";
 
 export type CategoryId =
   | "all"
@@ -20,6 +22,13 @@ export type CategoryId =
   | "floor"
   | "dish";
 
+export type ProductFlavor = {
+  id: string;
+  label: string;
+  src: string;
+  tone?: string;
+};
+
 export type Product = {
   id: ProductId;
   name: string;
@@ -28,40 +37,44 @@ export type Product = {
   tone: string;
   blurb: string;
   spec: string;
+  /** Default / summary volume shown before a size is picked. */
   volume: string;
   price?: string;
+  flavors?: ProductFlavor[];
+  sizes?: string[];
 };
 
 export const PRODUCTS: Product[] = [
   {
-    id: "lemon",
-    name: "Hand Wash - Lemon",
-    category: "hand-wash",
-    src: "/product-handwash-lemon.webp",
-    tone: "#e6b422",
-    blurb: "Freshness of lemon with a deep, lasting clean.",
-    spec: "3X Faster Germs Kill",
-    volume: "Pump bottle",
-  },
-  {
-    id: "charcoal",
-    name: "Hand Wash - Charcoal",
+    id: "hand-wash",
+    name: "Hand Wash",
     category: "hand-wash",
     src: "/product-handwash-charcoal.webp?v=11",
     tone: "#222",
-    blurb: "Activated charcoal for a purifying everyday cleanse.",
+    blurb: "Deep cleanse and lasting protection — pick your favourite fragrance.",
     spec: "99.9% Cleaning Protection",
-    volume: "Pump bottle",
-  },
-  {
-    id: "rose",
-    name: "Hand Wash - Rose",
-    category: "hand-wash",
-    src: "/product-handwash-rose.webp",
-    tone: "#e85a9b",
-    blurb: "Soft rose fragrance with the same deep, lasting clean.",
-    spec: "3X Faster Germs Kill",
-    volume: "Pump bottle",
+    volume: "250 ml – 5 Ltr",
+    flavors: [
+      {
+        id: "charcoal",
+        label: "Charcoal",
+        src: "/product-handwash-charcoal.webp?v=11",
+        tone: "#222",
+      },
+      {
+        id: "lemon",
+        label: "Lemon",
+        src: "/product-handwash-lemon.webp",
+        tone: "#e6b422",
+      },
+      {
+        id: "rose",
+        label: "Rose",
+        src: "/product-handwash-rose.webp",
+        tone: "#e85a9b",
+      },
+    ],
+    sizes: ["250 ml", "500 ml", "600 ml", "5 Ltr"],
   },
   {
     id: "toilet",
@@ -71,7 +84,8 @@ export const PRODUCTS: Product[] = [
     tone: "#1c4fa0",
     blurb: "10x Power. Removes tough stains. Fresh fragrance. Deep cleaning.",
     spec: "Kills 99.9% Germs",
-    volume: "1L",
+    volume: "500 ml – 1 Ltr",
+    sizes: ["500 ml", "1 Ltr"],
   },
   {
     id: "bathroom",
@@ -81,7 +95,8 @@ export const PRODUCTS: Product[] = [
     tone: "#6e1010",
     blurb: "10X better cleaning for sinks, tiles and fittings.",
     spec: "Kills 99.9% Germs",
-    volume: "1L",
+    volume: "500 ml – 1 Ltr",
+    sizes: ["500 ml", "1 Ltr"],
   },
   {
     id: "laundry",
@@ -90,28 +105,40 @@ export const PRODUCTS: Product[] = [
     src: "/product-laundry.webp?v=7",
     tone: "#3d7ad6",
     blurb: "Deep clean. Fresh fragrance. Gentle on fabric.",
-    spec: "1 Ltr. Net Content",
-    volume: "1 Ltr",
+    spec: "1 Ltr · 5 Ltr",
+    volume: "1 Ltr – 5 Ltr",
+    sizes: ["1 Ltr", "5 Ltr"],
   },
   {
-    id: "floor-lemon",
-    name: "Floor Cleaner - Lemon Liquid",
+    id: "floor",
+    name: "Premium Floor Cleaner",
     category: "floor",
-    src: "/product-floor-lemon.webp?v=1",
+    src: "/lavender-floor.webp",
     tone: "#7b4fd1",
-    blurb: "Lemon Fresh floor liquid. Shining long-lasting fragrance with 10X germ protection.",
+    blurb: "Shining long-lasting fragrance with 10X germ protection — three fresh options.",
     spec: "10X Better Germ Protection",
-    volume: "5 Ltr",
-  },
-  {
-    id: "floor-rose",
-    name: "Floor Cleaner - Rose Liquid",
-    category: "floor",
-    src: "/product-floor-rose.webp?v=1",
-    tone: "#9b4fc4",
-    blurb: "Rose floor liquid. Shining long-lasting fragrance with 10X germ protection.",
-    spec: "10X Better Germ Protection",
-    volume: "5 Ltr",
+    volume: "500 ml – 1 Ltr",
+    flavors: [
+      {
+        id: "lavender",
+        label: "Lavender",
+        src: "/lavender-floor.webp",
+        tone: "#7b4fd1",
+      },
+      {
+        id: "lemon",
+        label: "Lemon",
+        src: "/product-floor-lemon.webp?v=1",
+        tone: "#8a6a20",
+      },
+      {
+        id: "rose",
+        label: "Rose",
+        src: "/product-floor-rose.webp?v=1",
+        tone: "#9b4fc4",
+      },
+    ],
+    sizes: ["500 ml", "1 Ltr"],
   },
   {
     id: "dish",
@@ -121,7 +148,8 @@ export const PRODUCTS: Product[] = [
     tone: "#c5a000",
     blurb: "Tough on grease. Gentle on hands. Fresh lemon fragrance.",
     spec: "Powerful Grease Removal",
-    volume: "Family pack",
+    volume: "1 Ltr",
+    sizes: ["1 Ltr"],
   },
 ];
 
@@ -136,38 +164,67 @@ export const COMBO_PRODUCT: Product = {
   spec: "Laundry · Floor · Dish · Bath · Toilet · Hand Wash",
   volume: "Combo pack",
   price: "₹349",
+  sizes: ["Combo pack"],
 };
 
 export const COMBO_INCLUDES = [
   { id: "laundry" as const, label: "Laundry" },
-  { id: "floor-lemon" as const, label: "Floor" },
+  { id: "floor" as const, label: "Floor" },
   { id: "dish" as const, label: "Dish" },
   { id: "bathroom" as const, label: "Bath" },
   { id: "toilet" as const, label: "Toilet" },
-  { id: "charcoal" as const, label: "Hand Wash" },
+  { id: "hand-wash" as const, label: "Hand Wash" },
 ] as const;
+
+export function resolveProductId(id: ProductId): ProductId {
+  if (id === "charcoal" || id === "lemon" || id === "rose") return "hand-wash";
+  if (id === "floor-lemon" || id === "floor-rose") return "floor";
+  return id;
+}
 
 export function findProduct(id: ProductId): Product | undefined {
   if (id === "combo") return COMBO_PRODUCT;
-  // Legacy cart / deep-link alias for the old single floor SKU.
-  if (id === "floor") return PRODUCTS.find((item) => item.id === "floor-lemon");
-  return PRODUCTS.find((item) => item.id === id);
+  const resolved = resolveProductId(id);
+  return PRODUCTS.find((item) => item.id === resolved) ?? (resolved === "combo" ? COMBO_PRODUCT : undefined);
+}
+
+export function defaultFlavor(product: Product): string | undefined {
+  return product.flavors?.[0]?.id;
+}
+
+export function defaultSize(product: Product): string {
+  return product.sizes?.[0] ?? product.volume;
+}
+
+export function flavorOf(product: Product, flavorId?: string): ProductFlavor | undefined {
+  if (!product.flavors?.length) return undefined;
+  return product.flavors.find((item) => item.id === flavorId) ?? product.flavors[0];
+}
+
+export function formatVariantLabel(
+  product: Product,
+  flavorId?: string,
+  size?: string,
+): string {
+  const flavor = flavorOf(product, flavorId)?.label;
+  const parts = [product.name, flavor, size].filter(Boolean);
+  return parts.join(" · ");
+}
+
+export function cartLineKey(id: ProductId, flavor: string | undefined, size: string): string {
+  return `${resolveProductId(id)}__${flavor ?? "-"}__${size}`;
 }
 
 export const HAND_WASH = PRODUCTS.filter((item) => item.category === "hand-wash");
 export const RANGE_PRODUCTS = PRODUCTS.filter((item) => item.category !== "hand-wash");
 
-/** Catalog grid: home care leads; hand washes follow so the open isn't only pumps. */
 export const CATALOG_ORDER: ProductId[] = [
+  "hand-wash",
   "toilet",
   "bathroom",
   "laundry",
-  "floor-lemon",
-  "floor-rose",
+  "floor",
   "dish",
-  "charcoal",
-  "lemon",
-  "rose",
 ];
 
 export const CATEGORIES: { id: CategoryId; label: string }[] = [

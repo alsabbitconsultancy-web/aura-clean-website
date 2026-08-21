@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { AddToCartButton } from "../components/AddToCartButton";
 import { ComboPromoCard } from "../components/ComboPromoCard";
+import { ProductOptionCard } from "../components/ProductOptionCard";
 import {
   CATALOG_ORDER,
   CATEGORIES,
@@ -52,12 +53,11 @@ const CERTS = [
 ] as const;
 
 const START_MARK: Partial<Record<ProductId, string>> = {
-  charcoal: "Best seller",
-  lemon: "Fresh lemon",
-  rose: "Soft rose",
-  toilet: "10x Power",
-  "floor-lemon": "Lemon liquid",
-  "floor-rose": "Rose liquid",
+  "hand-wash": "3 flavours",
+  floor: "3 flavours",
+  toilet: "2 sizes",
+  bathroom: "2 sizes",
+  laundry: "2 sizes",
 };
 
 const CHIP_LABELS: Partial<Record<CategoryId, string>> = {
@@ -81,11 +81,17 @@ export function ProductPage() {
       const inCat = category === "all" || item.category === category;
       if (!inCat) return false;
       if (!q) return true;
-      return `${item.name} ${item.blurb} ${item.spec}`.toLowerCase().includes(q);
+      const flavorText = item.flavors?.map((f) => f.label).join(" ") ?? "";
+      const sizeText = item.sizes?.join(" ") ?? "";
+      return `${item.name} ${item.blurb} ${item.spec} ${flavorText} ${sizeText}`
+        .toLowerCase()
+        .includes(q);
     }).sort((a, b) => (rank.get(a.id) ?? 99) - (rank.get(b.id) ?? 99));
   }, [category, query]);
 
-  const charcoal = PRODUCTS.find((item) => item.id === "charcoal")!;
+  const handWash = PRODUCTS.find((item) => item.id === "hand-wash")!;
+  const charcoalSrc =
+    handWash.flavors?.find((item) => item.id === "charcoal")?.src ?? handWash.src;
   const showCombo = category === "all" && query.trim() === "";
 
   return (
@@ -148,29 +154,20 @@ export function ProductPage() {
         ) : (
           <ul className="product-grid">
             {list.map((item) => (
-              <li key={item.id} data-sku={item.id}>
-                {START_MARK[item.id] ? (
-                  <em className="product-mark">{START_MARK[item.id]}</em>
-                ) : null}
-                <div className="product-visual">
-                  <img src={item.src} alt={item.name} width={280} height={480} />
-                </div>
-                <div className="product-meta">
-                  <span className="product-vol">{item.volume}</span>
-                  <h3>{item.name}</h3>
-                  <p>{item.blurb}</p>
-                  <strong className="product-spec">{item.spec}</strong>
-                  <AddToCartButton id={item.id} />
-                </div>
-              </li>
+              <ProductOptionCard
+                key={item.id}
+                product={item}
+                mark={START_MARK[item.id]}
+                layout="grid"
+              />
             ))}
           </ul>
         )}
       </section>
 
       <section className="featured" id="featured">
-        <div className="featured-stage" data-sku="charcoal">
-          <img src={charcoal.src} alt={charcoal.name} width={420} height={840} />
+        <div className="featured-stage" data-sku="hand-wash">
+          <img src={charcoalSrc} alt="Hand Wash Charcoal" width={420} height={840} />
         </div>
         <div className="featured-copy">
           <p className="lux-kicker">Best seller</p>
@@ -195,7 +192,12 @@ export function ProductPage() {
             <li>pH balanced</li>
             <li>Suitable for all skin types</li>
           </ul>
-          <AddToCartButton id="charcoal" className="add-cart add-cart-solid" />
+          <AddToCartButton
+            id="hand-wash"
+            flavor="charcoal"
+            size="500 ml"
+            className="add-cart add-cart-solid"
+          />
         </div>
       </section>
 

@@ -1,14 +1,22 @@
 import { useState } from "react";
 import { whatsappHref } from "../data/contact";
-import { findProduct, type ProductId } from "../data/products";
+import {
+  defaultFlavor,
+  defaultSize,
+  findProduct,
+  formatVariantLabel,
+  type ProductId,
+} from "../data/products";
 import { useCart } from "../context/CartContext";
 
 type Props = {
   id: ProductId;
+  flavor?: string;
+  size?: string;
   className?: string;
 };
 
-export function AddToCartButton({ id, className }: Props) {
+export function AddToCartButton({ id, flavor, size, className }: Props) {
   const { add } = useCart();
   const [added, setAdded] = useState(false);
 
@@ -17,14 +25,19 @@ export function AddToCartButton({ id, className }: Props) {
       type="button"
       className={className ?? "add-cart"}
       onClick={() => {
-        add(id);
+        add(id, { flavor, size });
         setAdded(true);
         window.setTimeout(() => setAdded(false), 1400);
         const product = findProduct(id);
-        const name = product?.name ?? "Aura Clean product";
-        const price = product?.price ? ` (${product.price})` : "";
+        if (!product) return;
+        const label = formatVariantLabel(
+          product,
+          flavor ?? defaultFlavor(product),
+          size ?? defaultSize(product),
+        );
+        const price = product.price ? ` (${product.price})` : "";
         const message =
-          `Hi Aura Clean,\nI want to order:\n• ${name}${price}\n\nPlease share availability and delivery details.`;
+          `Hi Aura Clean,\nI want to order:\n• ${label}${price}\n\nPlease share availability and delivery details.`;
         window.open(whatsappHref(message), "_blank", "noopener,noreferrer");
       }}
     >

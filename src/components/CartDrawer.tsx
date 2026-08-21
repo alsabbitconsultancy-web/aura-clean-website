@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { whatsappHref } from "../data/contact";
-import { findProduct } from "../data/products";
+import {
+  findProduct,
+  flavorOf,
+  formatVariantLabel,
+} from "../data/products";
 import { useCart } from "../context/CartContext";
 import { CloseIcon } from "./icons";
 
@@ -29,9 +33,10 @@ export function CartDrawer() {
     .filter((item): item is NonNullable<typeof item> => item !== null);
 
   const orderLines = items
-    .map(({ qty, product }) => {
+    .map(({ qty, product, flavor, size }) => {
+      const label = formatVariantLabel(product, flavor, size);
       const price = product.price ? ` - ${product.price}` : "";
-      return `• ${product.name} x${qty}${price}`;
+      return `• ${label} x${qty}${price}`;
     })
     .join("\n");
 
@@ -62,29 +67,32 @@ export function CartDrawer() {
           <p className="cart-empty">Your cart is empty. Add a bottle from the range.</p>
         ) : (
           <ul className="cart-lines">
-            {items.map(({ id, qty, product }) => (
-              <li key={id}>
-                <img src={product.src} alt="" width={72} height={120} />
-                <div>
-                  <strong>{product.name}</strong>
-                  <span>
-                    {product.price ? `${product.price} · ${product.volume}` : product.volume}
-                  </span>
-                  <div className="cart-qty">
-                    <button type="button" onClick={() => setQty(id, qty - 1)} aria-label="Decrease quantity">
-                      −
-                    </button>
-                    <em>{qty}</em>
-                    <button type="button" onClick={() => setQty(id, qty + 1)} aria-label="Increase quantity">
-                      +
-                    </button>
+            {items.map(({ key, qty, product, flavor, size }) => {
+              const image = flavorOf(product, flavor)?.src ?? product.src;
+              return (
+                <li key={key}>
+                  <img src={image} alt="" width={72} height={120} />
+                  <div>
+                    <strong>{formatVariantLabel(product, flavor, size)}</strong>
+                    <span>
+                      {product.price ? `${product.price} · ${size}` : size}
+                    </span>
+                    <div className="cart-qty">
+                      <button type="button" onClick={() => setQty(key, qty - 1)} aria-label="Decrease quantity">
+                        −
+                      </button>
+                      <em>{qty}</em>
+                      <button type="button" onClick={() => setQty(key, qty + 1)} aria-label="Increase quantity">
+                        +
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <button type="button" className="cart-remove" onClick={() => remove(id)}>
-                  Remove
-                </button>
-              </li>
-            ))}
+                  <button type="button" className="cart-remove" onClick={() => remove(key)}>
+                    Remove
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         )}
 
