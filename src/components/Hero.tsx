@@ -362,7 +362,7 @@ export function Hero() {
 
   return (
     <motion.section
-      className="relative isolate h-dvh min-h-[640px] overflow-hidden"
+      className="hero-stage relative isolate h-dvh min-h-[640px] w-full max-w-full overflow-hidden"
       animate={{ backgroundColor: slide.bg }}
       transition={{ duration: reduce ? 0 : 0.75, ease: EASE }}
       aria-label="Aura Clean collection"
@@ -416,7 +416,7 @@ export function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="hero-copy-panel absolute bottom-[7.4rem] left-0 z-40 w-full max-w-[34rem] px-[clamp(1rem,4.5vw,4.5rem)] lg:bottom-[5.6rem]">
+      <div className="hero-copy-panel absolute bottom-[7.4rem] left-0 right-auto z-40 w-full max-w-[34rem] px-[clamp(1rem,4.5vw,4.5rem)] max-md:right-0 max-md:max-w-none max-md:px-0 lg:bottom-[5.6rem]">
         <div className="hero-copy-inner relative min-h-[13.8rem] max-md:min-h-0">
           <AnimatePresence initial={false} mode={isMobile ? "wait" : undefined}>
             <motion.div
@@ -456,7 +456,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="hero-tabs absolute inset-x-0 bottom-0 z-40 flex justify-end px-[clamp(1rem,4.5vw,4.5rem)] pb-[max(1.1rem,env(safe-area-inset-bottom))]">
+      <div className="hero-tabs absolute inset-x-0 bottom-0 z-40 flex justify-end px-[clamp(1rem,4.5vw,4.5rem)] pb-[max(1.1rem,env(safe-area-inset-bottom))] max-md:px-0">
         <div
           className="hero-tabs-rail flex max-w-[min(100%,48rem)] flex-wrap justify-end gap-1.5"
           role="tablist"
@@ -488,7 +488,7 @@ export function Hero() {
 
       <motion.div
         key={index}
-        className="absolute bottom-0 left-0 z-50 h-[3px] origin-left"
+        className="absolute bottom-0 left-0 z-50 h-[3px] w-full origin-left"
         style={{ background: slide.ink }}
         initial={{ scaleX: 0 }}
         animate={{ scaleX: reduce ? 0 : 1 }}

@@ -40,12 +40,12 @@ html, body, #root {
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
   overscroll-behavior-x: none;
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   overscroll-behavior-x: none;
   touch-action: pan-y;
 }
@@ -55,6 +55,12 @@ main {
   width: 100%;
   max-width: 100%;
   overflow-x: clip;
+}
+
+.hero-stage {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 img { max-width: 100%; display: block; }
@@ -172,6 +178,29 @@ button, a { font: inherit; }
 
 /* Mobile hero — editorial, centered, glass copy card */
 @media (max-width: 767px) {
+  html,
+  body,
+  #root,
+  main {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .hero-stage {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .site-nav {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   .hero-word-left,
   .hero-word-right {
     display: none;
@@ -184,11 +213,13 @@ button, a { font: inherit; }
     z-index: 14;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: clamp(2.6rem, 14vw, 3.6rem);
+    font-size: clamp(2.4rem, 12vw, 3.4rem);
     letter-spacing: 0.04em;
     color: var(--hero-word-ink, #fff8ee);
     opacity: 0.9;
     text-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+    max-width: 92vw;
+    overflow: hidden;
   }
 
   .hero-bottle {
@@ -197,12 +228,13 @@ button, a { font: inherit; }
   }
 
   .hero-copy-panel {
-    left: 0.75rem;
-    right: 0.75rem;
-    bottom: 7.35rem;
-    width: auto;
-    max-width: none;
-    padding: 0;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    bottom: 7.35rem !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 0 !important;
+    box-sizing: border-box;
   }
 
   .hero-copy-inner {
@@ -257,22 +289,30 @@ button, a { font: inherit; }
 
   .hero-tabs {
     justify-content: center;
-    padding-inline: 0.75rem;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0.75rem !important;
     padding-bottom: 5.9rem;
+    box-sizing: border-box;
   }
 
   .hero-tabs-rail {
+    width: 100%;
     max-width: 100%;
     flex-wrap: nowrap;
     justify-content: flex-start;
     gap: 0.45rem;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
     padding: 0.35rem;
     border-radius: 999px;
     background: color-mix(in srgb, #1c1408 28%, transparent);
     backdrop-filter: blur(12px);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    box-sizing: border-box;
   }
 
   .hero-tabs-rail::-webkit-scrollbar {
@@ -294,6 +334,44 @@ button, a { font: inherit; }
     background: #f5c400 !important;
     color: #1c1408 !important;
     box-shadow: none !important;
+  }
+
+  .band,
+  .range-grid,
+  .product-grid,
+  .final-cta,
+  .site-footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: clip;
+  }
+
+  .range-grid,
+  .product-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .range-grid > li,
+  .product-grid > li {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .option-block,
+  .option-row {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .mobile-dock {
+    left: 0.5rem;
+    right: 0.5rem;
+    width: auto;
+    max-width: calc(100% - 1rem);
+    box-sizing: border-box;
   }
 }
 
