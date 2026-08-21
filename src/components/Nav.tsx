@@ -12,16 +12,16 @@ import {
 const LINKS = [
   { to: "/", label: "Home" },
   { to: "/product", label: "Product" },
+  { to: "/offers", label: "Offers" },
   { to: "/about", label: "About Us" },
-  { to: "/why", label: "Why Aura Clean" },
   { to: "/contact", label: "Contact Us" },
 ] as const;
 
 const DOCK = [
   { to: "/product", label: "Shop", Icon: LeafIcon },
-  { to: "/about", label: "About", Icon: LifeIcon },
+  { to: "/offers", label: "Offers", Icon: StarShieldIcon },
   { to: "/", label: "Home", Icon: HomeIcon, home: true },
-  { to: "/why", label: "Why", Icon: StarShieldIcon },
+  { to: "/about", label: "About", Icon: LifeIcon },
   { to: "/contact", label: "Contact", Icon: PinIcon },
 ] as const;
 

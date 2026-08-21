@@ -1420,6 +1420,57 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
 
 .why-page { max-width: none; padding-bottom: 0; }
 
+.about-why-head {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  text-align: center;
+}
+
+.about-why-head .lux-kicker {
+  text-align: center;
+}
+
+.about-why-head h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12em;
+  margin: 0.45rem auto 0;
+  max-width: none;
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 5.6vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.about-why-head h2 span {
+  display: block;
+  max-width: 16ch;
+  text-align: center;
+}
+
+.about-why-head h2 span:last-child {
+  max-width: 18ch;
+}
+
+@media (min-width: 768px) {
+  .about-why-head h2 {
+    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  }
+
+  .about-why-head h2 span {
+    max-width: none;
+  }
+
+  .about-why-head h2 span:last-child {
+    max-width: none;
+  }
+}
+
 .why-stories {
   display: grid;
   gap: 1.6rem;
@@ -3192,50 +3243,107 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
 }
 
 /* ------------------------------------------------------------------ */
-/* Combo promo banner - brand matched, no corner flowers               */
+/* Offers & combo deals page                                           */
 /* ------------------------------------------------------------------ */
 
-.combo-promo.combo-promo-banner {
+.offers-page {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.offers-hero {
   position: relative;
-  display: block;
-  margin: 0 clamp(1.1rem, 4.5vw, 4.5rem) 1.35rem;
-  padding: 0;
+  margin: 0 0 1.5rem;
+  padding: clamp(2.4rem, 6vw, 4.2rem) clamp(1.1rem, 4.5vw, 4.5rem) clamp(2.2rem, 5vw, 3.4rem);
   overflow: hidden;
-  border-radius: 32px;
-  color: #1c1408;
+  color: #fff8ee;
   background:
-    radial-gradient(ellipse 60% 70% at 8% 15%, rgba(245, 196, 0, 0.22), transparent 58%),
-    radial-gradient(ellipse 50% 55% at 95% 20%, rgba(61, 68, 80, 0.08), transparent 55%),
-    linear-gradient(145deg, #fffdf8 0%, #fff8ee 45%, #fff3d6 100%);
-  border: 1px solid rgba(28, 20, 8, 0.08);
-  box-shadow:
-    0 22px 48px rgba(28, 20, 8, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    radial-gradient(ellipse 55% 80% at 100% 0%, rgba(245, 196, 0, 0.28), transparent 55%),
+    radial-gradient(ellipse 40% 60% at 0% 100%, rgba(245, 196, 0, 0.12), transparent 50%),
+    linear-gradient(160deg, #1c1408 0%, #2a2114 55%, #1c1408 100%);
 }
 
-.combo-promo.combo-promo-banner:hover {
-  box-shadow:
-    0 26px 54px rgba(28, 20, 8, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+.offers-hero .lux-kicker {
+  color: var(--lime);
 }
 
-.combo-soft-glow {
+.offers-hero h1 {
+  margin: 0.45rem 0 0;
+  max-width: 12ch;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.offers-hero > p:last-of-type {
+  margin: 1.15rem 0 0;
+  max-width: 38rem;
+  color: rgba(255, 248, 238, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.offers-featured {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1.25rem;
+  align-items: center;
+  margin: 0 clamp(1.1rem, 4.5vw, 4.5rem) 2rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  overflow: hidden;
+  border-radius: 28px;
+  color: #fff8ee;
+  background:
+    radial-gradient(ellipse 50% 70% at 90% 20%, rgba(245, 196, 0, 0.2), transparent 60%),
+    linear-gradient(145deg, #241c10 0%, #1c1408 100%);
+  border: 1px solid rgba(245, 196, 0, 0.22);
+  box-shadow: 0 28px 56px rgba(28, 20, 8, 0.22);
+}
+
+.offers-featured-glow {
   position: absolute;
-  inset: auto -8% -35% 40%;
-  height: 70%;
+  inset: auto -10% -40% 35%;
+  height: 75%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(245, 196, 0, 0.2), transparent 68%);
-  filter: blur(10px);
+  background: radial-gradient(circle, rgba(245, 196, 0, 0.22), transparent 68%);
   pointer-events: none;
 }
 
-.combo-badge {
-  position: absolute;
-  top: 1.1rem;
-  right: 1.1rem;
-  z-index: 4;
-  margin: 0;
-  padding: 0.4rem 0.85rem;
+.offers-featured-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.offers-featured-copy .lux-kicker {
+  color: rgba(245, 196, 0, 0.85);
+}
+
+.offers-featured-copy h2 {
+  margin: 0.45rem 0 0;
+  max-width: 14ch;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.55rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.offers-lead {
+  margin: 0.85rem 0 0;
+  max-width: 36ch;
+  color: rgba(255, 248, 238, 0.7);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.offers-badge {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  padding: 0.38rem 0.8rem;
   border-radius: 999px;
   background: var(--lime);
   color: #1c1408;
@@ -3245,106 +3353,67 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
   font-style: normal;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  box-shadow: 0 10px 22px rgba(245, 196, 0, 0.28);
 }
 
-.combo-promo-inner {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 1.2rem;
-  align-items: center;
-  min-height: 100%;
-  padding: 1.85rem 1.6rem 1.6rem;
-}
-
-.combo-promo-copy {
-  position: relative;
-  z-index: 1;
-}
-
-.combo-promo-copy .lux-kicker {
-  color: rgba(28, 20, 8, 0.55);
-  letter-spacing: 0.16em;
-}
-
-.combo-promo-copy h2,
-.combo-promo-copy h3 {
-  margin: 0.4rem 0 0;
-  max-width: 16ch;
-  color: #1c1408;
-  font-family: "Archivo Black", Impact, sans-serif;
-  font-size: clamp(1.55rem, 2.8vw, 2.2rem);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-}
-
-.combo-price {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  margin: 1rem 0 0;
-  padding: 0.45rem 0.95rem;
-  border-radius: 999px;
-  background: #1c1408;
-  color: rgba(255, 248, 238, 0.78);
-  font-size: 0.92rem;
-  font-weight: 600;
-  box-shadow: 0 12px 24px rgba(28, 20, 8, 0.16);
-}
-
-.combo-price strong {
-  color: var(--lime);
-  font-family: "Archivo Black", Impact, sans-serif;
-  font-size: clamp(1.45rem, 2.5vw, 1.9rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-
-.combo-sub {
-  margin: 0.85rem 0 0;
-  max-width: 30ch;
-  color: rgba(28, 20, 8, 0.68);
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
-.combo-includes {
+.offers-price-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
-  margin: 1.15rem 0 0;
+  align-items: baseline;
+  gap: 0.55rem 0.75rem;
+  margin: 1.1rem 0 0;
+}
+
+.offers-price-row strong {
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--lime);
+}
+
+.offers-price-row s {
+  color: rgba(255, 248, 238, 0.45);
+  font-size: 1rem;
+}
+
+.offers-price-row span {
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(245, 196, 0, 0.16);
+  color: var(--lime);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.offers-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
   padding: 0;
   list-style: none;
 }
 
-.combo-includes li {
+.offers-chips li {
   margin: 0;
-  padding: 0.32rem 0.7rem;
+  padding: 0.3rem 0.65rem;
   border-radius: 999px;
-  background: rgba(255, 253, 246, 0.9);
-  border: 1px solid rgba(28, 20, 8, 0.1);
-  color: #3d4450;
-  font-size: 0.7rem;
+  border: 1px solid rgba(255, 248, 238, 0.18);
+  background: rgba(255, 248, 238, 0.06);
+  color: rgba(255, 248, 238, 0.82);
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  box-shadow: none;
-  transform: none;
 }
 
-.combo-promo .combo-includes li:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-.combo-cta {
+.offers-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  margin-top: 1.3rem;
+  margin-top: 1.25rem;
   min-height: 50px;
   padding: 0.4rem 1.35rem;
   border: 0;
@@ -3359,114 +3428,238 @@ html[data-hero="bathroom"] { --hero-ink: #fff4f6; }
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.combo-cta:hover {
+.offers-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 32px rgba(245, 196, 0, 0.38);
 }
 
-.combo-cta span {
+.offers-cta span {
   display: grid;
   place-items: center;
 }
 
-.combo-cta svg {
+.offers-cta svg {
   width: 1rem;
   height: 1rem;
 }
 
-.combo-promo-stage {
+.offers-bottles {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  min-height: 240px;
-  padding: 0.8rem 0.25rem 0.4rem;
+  min-height: 220px;
+  padding: 0.5rem 0;
 }
 
-.combo-soft-podium {
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 6%;
-  height: 42%;
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9), rgba(245, 196, 0, 0.18) 48%, transparent 72%);
-  filter: blur(2px);
-  pointer-events: none;
-}
-
-.combo-promo-stage img {
-  position: relative;
-  z-index: 1;
+.offers-bottles img {
   width: auto;
-  height: clamp(130px, 20vw, 188px);
-  margin: 0 -0.45rem;
+  height: clamp(118px, 18vw, 188px);
+  margin: 0 -0.42rem;
   object-fit: contain;
-  filter: drop-shadow(0 16px 18px rgba(28, 20, 8, 0.18));
+  filter: drop-shadow(0 18px 20px rgba(0, 0, 0, 0.35));
   transition: transform 0.4s ease;
 }
 
-.combo-promo-stage img:nth-child(2) { transform: rotate(-5deg) translateY(8px); }
-.combo-promo-stage img:nth-child(3) { transform: rotate(-2deg) translateY(2px); }
-.combo-promo-stage img:nth-child(4) {
-  transform: translateY(-4px);
-  z-index: 2;
-  height: clamp(148px, 22vw, 210px);
+.offers-featured:hover .offers-bottles img:nth-child(odd) {
+  transform: translateY(-8px);
 }
-.combo-promo-stage img:nth-child(5) { transform: rotate(2deg) translateY(2px); }
-.combo-promo-stage img:nth-child(6) { transform: rotate(5deg) translateY(8px); }
-.combo-promo-stage img:nth-child(7) { transform: rotate(7deg) translateY(12px); }
 
-.combo-promo:hover .combo-promo-stage img:nth-child(2) {
-  transform: rotate(-6deg) translateY(0);
-}
-.combo-promo:hover .combo-promo-stage img:nth-child(3) {
-  transform: rotate(-3deg) translateY(-6px);
-}
-.combo-promo:hover .combo-promo-stage img:nth-child(4) {
+.offers-featured:hover .offers-bottles img:nth-child(even) {
   transform: translateY(-14px);
 }
-.combo-promo:hover .combo-promo-stage img:nth-child(5) {
-  transform: rotate(3deg) translateY(-6px);
+
+.offers-grid {
+  padding: 0.5rem clamp(1.1rem, 4.5vw, 4.5rem) 2.5rem;
 }
-.combo-promo:hover .combo-promo-stage img:nth-child(6),
-.combo-promo:hover .combo-promo-stage img:nth-child(7) {
-  transform: rotate(6deg) translateY(2px);
+
+.offers-grid-head {
+  margin: 0 0 1.35rem;
+}
+
+.offers-grid-head h2 {
+  margin: 0.35rem 0 0;
+  max-width: 18ch;
+  color: #1c1408;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.offers-grid-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.offers-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 1.25rem 1.15rem 1.35rem;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(28, 20, 8, 0.08);
+  box-shadow: 0 18px 40px rgba(28, 20, 8, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.offers-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(28, 20, 8, 0.12);
+}
+
+.offers-card.theme-citrus {
+  color: #1c1408;
+  background:
+    radial-gradient(ellipse 70% 55% at 100% 0%, rgba(245, 196, 0, 0.45), transparent 55%),
+    linear-gradient(165deg, #fffdf6 0%, #ffe9a8 100%);
+}
+
+.offers-card.theme-blush {
+  color: #1c1408;
+  background:
+    radial-gradient(ellipse 70% 55% at 0% 0%, rgba(232, 90, 155, 0.28), transparent 55%),
+    linear-gradient(165deg, #fff8f4 0%, #ffd6e8 100%);
+}
+
+.offers-card.theme-ink {
+  color: #fff8ee;
+  background:
+    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(245, 196, 0, 0.18), transparent 55%),
+    linear-gradient(165deg, #2a2114 0%, #1c1408 100%);
+}
+
+.offers-card.theme-ink .offers-chips li {
+  border-color: rgba(255, 248, 238, 0.18);
+  background: rgba(255, 248, 238, 0.06);
+  color: rgba(255, 248, 238, 0.82);
+}
+
+.offers-card.theme-citrus .offers-chips li,
+.offers-card.theme-blush .offers-chips li {
+  border-color: rgba(28, 20, 8, 0.12);
+  background: rgba(255, 255, 255, 0.55);
+  color: #3d4450;
+}
+
+.offers-card.theme-citrus .offers-price-row strong,
+.offers-card.theme-blush .offers-price-row strong {
+  color: #1c1408;
+}
+
+.offers-card.theme-citrus .offers-price-row s,
+.offers-card.theme-blush .offers-price-row s {
+  color: rgba(28, 20, 8, 0.4);
+}
+
+.offers-card.theme-citrus .offers-price-row span {
+  background: rgba(28, 20, 8, 0.08);
+  color: #1c1408;
+}
+
+.offers-card.theme-blush .offers-price-row span {
+  background: rgba(232, 90, 155, 0.18);
+  color: #9b2d5c;
+}
+
+.offers-card .offers-bottles {
+  min-height: 160px;
+  margin: 0.2rem 0 0.4rem;
+}
+
+.offers-card .offers-bottles img {
+  height: clamp(100px, 14vw, 132px);
+}
+
+.offers-card:hover .offers-bottles img {
+  transform: translateY(-6px);
+}
+
+.offers-card-copy h3 {
+  margin: 0.35rem 0 0;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.offers-card-copy > p {
+  margin: 0.55rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  opacity: 0.78;
+}
+
+.offers-card .offers-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  padding-top: 0.4rem;
+}
+
+.offers-card-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.offers-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+  padding: 2.2rem clamp(1.1rem, 4.5vw, 4.5rem);
+  background: #1c1408;
+  color: #fff8ee;
+}
+
+.offers-foot h2 {
+  margin: 0;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.offers-foot p {
+  margin: 0.45rem 0 0;
+  color: rgba(255, 248, 238, 0.68);
 }
 
 @media (max-width: 1023px) {
-  .combo-promo.combo-promo-banner {
-    margin-top: 0.2rem;
-  }
-
-  .combo-promo-inner {
+  .offers-featured {
     grid-template-columns: 1fr;
-    padding: 1.5rem 1.15rem 1.3rem;
+    margin-bottom: 1.5rem;
   }
 
-  .combo-badge {
-    top: 0.9rem;
-    right: 0.9rem;
+  .offers-featured .offers-bottles {
+    order: -1;
+    min-height: 170px;
   }
 
-  .combo-promo-copy h2,
-  .combo-promo-copy h3 {
+  .offers-featured .offers-bottles img {
+    height: 112px;
+  }
+
+  .offers-grid-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .offers-hero h1 {
     max-width: none;
   }
 
-  .combo-promo-stage {
-    min-height: 180px;
-    order: -1;
-  }
-
-  .combo-promo-stage img {
-    height: 118px;
-    margin: 0 -0.35rem;
-  }
-
-  .combo-promo-stage img:nth-child(4) {
-    height: 136px;
+  .offers-featured-copy h2 {
+    max-width: none;
   }
 }
 

@@ -7,8 +7,8 @@ import { ArrowIcon, FacebookIcon, InstagramIcon } from "./icons";
 const LINKS = [
   { to: "/", label: "Home" },
   { to: "/product", label: "Product" },
+  { to: "/offers", label: "Offers" },
   { to: "/about", label: "About Us" },
-  { to: "/why", label: "Why Aura Clean" },
   { to: "/contact", label: "Contact Us" },
 ] as const;
 

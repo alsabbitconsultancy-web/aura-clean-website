@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { AddToCartButton } from "../components/AddToCartButton";
-import { ComboPromoCard } from "../components/ComboPromoCard";
 import { ProductOptionCard } from "../components/ProductOptionCard";
 import {
   CATALOG_ORDER,
@@ -92,12 +91,9 @@ export function ProductPage() {
   const handWash = PRODUCTS.find((item) => item.id === "hand-wash")!;
   const charcoalSrc =
     handWash.flavors?.find((item) => item.id === "charcoal")?.src ?? handWash.src;
-  const showCombo = category === "all" && query.trim() === "";
 
   return (
     <main id="main" className="catalog">
-      {showCombo ? <ComboPromoCard /> : null}
-
       <div className="catalog-controls">
         <div className="catalog-chips" role="tablist" aria-label="Product categories">
           {CATEGORIES.map((item) => {

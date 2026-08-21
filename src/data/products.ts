@@ -6,12 +6,35 @@ export type ProductId =
   | "floor"
   | "dish"
   | "combo"
+  | "combo-kitchen"
+  | "combo-shine"
+  | "combo-trio"
   /** Legacy cart / deep-link ids */
   | "charcoal"
   | "lemon"
   | "rose"
   | "floor-lemon"
   | "floor-rose";
+
+export type OfferTheme = "featured" | "citrus" | "blush" | "ink";
+
+export type OfferInclude = {
+  id: "hand-wash" | "toilet" | "bathroom" | "laundry" | "floor" | "dish";
+  label: string;
+  flavor?: string;
+};
+
+export type OfferDeal = {
+  id: Extract<ProductId, "combo" | "combo-kitchen" | "combo-shine" | "combo-trio">;
+  badge: string;
+  title: string;
+  blurb: string;
+  price: string;
+  was?: string;
+  saveLabel: string;
+  theme: OfferTheme;
+  includes: OfferInclude[];
+};
 
 export type CategoryId =
   | "all"
@@ -153,28 +176,95 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-/** Promo pack - cart only, not listed as a regular catalog SKU. */
-export const COMBO_PRODUCT: Product = {
-  id: "combo",
-  name: "6-in-1 Home Care Combo",
-  category: "hand-wash",
-  src: "/product-handwash-charcoal.webp?v=11",
-  tone: "#1c1408",
-  blurb: "6 Essentials. 1 Family. Total Home Hygiene.",
-  spec: "Laundry · Floor · Dish · Bath · Toilet · Hand Wash",
-  volume: "Combo pack",
-  price: "₹349",
-  sizes: ["Combo pack"],
-};
+/** Combo / offer packs — cart only, not listed as regular catalog SKUs. */
+export const OFFERS: OfferDeal[] = [
+  {
+    id: "combo",
+    badge: "Best value",
+    title: "6-in-1 Home Care Combo",
+    blurb: "Six essentials in one pack — laundry, floor, dish, bath, toilet and hand wash for the whole home.",
+    price: "₹349",
+    was: "₹499",
+    saveLabel: "Save ₹150",
+    theme: "featured",
+    includes: [
+      { id: "laundry", label: "Laundry" },
+      { id: "floor", label: "Floor", flavor: "lavender" },
+      { id: "dish", label: "Dish" },
+      { id: "bathroom", label: "Bath" },
+      { id: "toilet", label: "Toilet" },
+      { id: "hand-wash", label: "Hand Wash", flavor: "charcoal" },
+    ],
+  },
+  {
+    id: "combo-kitchen",
+    badge: "Kitchen deal",
+    title: "Kitchen Fresh Duo",
+    blurb: "Grease-cutting dish wash paired with lemon hand wash for a brighter sink ritual.",
+    price: "₹199",
+    was: "₹259",
+    saveLabel: "Save ₹60",
+    theme: "citrus",
+    includes: [
+      { id: "dish", label: "Dish Wash" },
+      { id: "hand-wash", label: "Hand Wash", flavor: "lemon" },
+    ],
+  },
+  {
+    id: "combo-shine",
+    badge: "Shine pair",
+    title: "Floor & Bath Shine",
+    blurb: "Lavender floor cleaner plus disinfectant bathroom spray for rooms that actually look finished.",
+    price: "₹249",
+    was: "₹319",
+    saveLabel: "Save ₹70",
+    theme: "blush",
+    includes: [
+      { id: "floor", label: "Floor", flavor: "lavender" },
+      { id: "bathroom", label: "Bathroom" },
+    ],
+  },
+  {
+    id: "combo-trio",
+    badge: "Flavour pack",
+    title: "Hand Wash Flavour Trio",
+    blurb: "Charcoal, Lemon and Rose — three fragrances so every sink in the house can pick a favourite.",
+    price: "₹299",
+    was: "₹369",
+    saveLabel: "Save ₹70",
+    theme: "ink",
+    includes: [
+      { id: "hand-wash", label: "Charcoal", flavor: "charcoal" },
+      { id: "hand-wash", label: "Lemon", flavor: "lemon" },
+      { id: "hand-wash", label: "Rose", flavor: "rose" },
+    ],
+  },
+];
 
-export const COMBO_INCLUDES = [
-  { id: "laundry" as const, label: "Laundry" },
-  { id: "floor" as const, label: "Floor" },
-  { id: "dish" as const, label: "Dish" },
-  { id: "bathroom" as const, label: "Bath" },
-  { id: "toilet" as const, label: "Toilet" },
-  { id: "hand-wash" as const, label: "Hand Wash" },
-] as const;
+function offerToProduct(offer: OfferDeal): Product {
+  return {
+    id: offer.id,
+    name: offer.title,
+    category: "hand-wash",
+    src:
+      PRODUCTS.find((p) => p.id === offer.includes[0]?.id)?.src ??
+      "/product-handwash-charcoal.webp?v=11",
+    tone: "#1c1408",
+    blurb: offer.blurb,
+    spec: offer.includes.map((item) => item.label).join(" · "),
+    volume: "Combo pack",
+    price: offer.price,
+    sizes: ["Combo pack"],
+  };
+}
+
+export const COMBO_PRODUCTS: Product[] = OFFERS.map(offerToProduct);
+
+/** @deprecated Prefer OFFERS[0] — kept for older imports. */
+export const COMBO_PRODUCT = COMBO_PRODUCTS[0]!;
+
+/** @deprecated Prefer OFFERS[0].includes */
+export const COMBO_INCLUDES = OFFERS[0]!.includes;
 
 export function resolveProductId(id: ProductId): ProductId {
   if (id === "charcoal" || id === "lemon" || id === "rose") return "hand-wash";
@@ -183,9 +273,19 @@ export function resolveProductId(id: ProductId): ProductId {
 }
 
 export function findProduct(id: ProductId): Product | undefined {
-  if (id === "combo") return COMBO_PRODUCT;
   const resolved = resolveProductId(id);
-  return PRODUCTS.find((item) => item.id === resolved) ?? (resolved === "combo" ? COMBO_PRODUCT : undefined);
+  const combo = COMBO_PRODUCTS.find((item) => item.id === resolved);
+  if (combo) return combo;
+  return PRODUCTS.find((item) => item.id === resolved);
+}
+
+export function offerBottleSrc(include: OfferInclude): string {
+  const product = PRODUCTS.find((item) => item.id === include.id);
+  if (!product) return "/product-handwash-charcoal.webp?v=11";
+  if (include.flavor) {
+    return product.flavors?.find((f) => f.id === include.flavor)?.src ?? product.src;
+  }
+  return product.src;
 }
 
 export function defaultFlavor(product: Product): string | undefined {
