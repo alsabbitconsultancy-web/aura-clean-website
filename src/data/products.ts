@@ -134,7 +134,7 @@ export const PRODUCTS: Product[] = [
       {
         id: "rose",
         label: "Rose",
-        src: "/product-floor-rose.webp?v=6",
+        src: "/product-floor-rose.webp?v=7",
         tone: "#e85a9b",
       },
     ],
